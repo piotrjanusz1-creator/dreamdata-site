@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Maciej Ligiera",
+    "role": "CEO & Co-founder / Vision Keeper",
+    "bio": "Nadaje kierunek DreamData, łączy strategię biznesową z analityką danych. Dba o relacje z kluczowymi klientami i pilnuje, aby AI zawsze miało sens biznesowy (a nie tylko modne nazwy).",
+    "image": "assets/team/maciej-ligiera.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Małgorzata Kukiełka",
+    "role": "Data Analyst / Insight Translator",
+    "bio": "Specjalistka od zamiany liczb w zrozumiałe wnioski. Modeluje raporty finansowe i operacyjne tak, aby zarząd wiedział co, dlaczego i co dalej.",
+    "image": "assets/team/malgorzata-kukielka.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Izabela Stachowicz",
+    "role": "Data Analyst / E-commerce Detective",
+    "bio": "Analizuje dane z e-commerce i marketingu. Tropi trendy, optymalizuje kampanie i sprawdza, gdzie dokładnie uciekają konwersje.",
+    "image": "assets/team/izabela-stachowicz.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Weronika Zielkowska",
+    "role": "Data Analyst / Process Optimizer",
+    "bio": "Wspiera firmy logistyczne i produkcyjne w optymalizacji procesów. Buduje dashboardy, które skracają time-to-insight i porządkują łańcuch dostaw.",
+    "image": "assets/team/weronika-zielkowska.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Piotr Janusz",
+    "role": "Data Analyst / Architecture Builder/Gang Anlbanii",
+    "bio": "Odpowiada za integrację danych i przygotowanie modeli analitycznych. Łączy wiele źródeł w jedno spójne środowisko raportowe — bez chaosu i ręcznego Excela.",
+    "image": "assets/team/piotr-janusz.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Tomasz Marek",
+    "role": "Data Analyst / Dashboard Architect",
+    "bio": "Projektuje czytelne dashboardy i raporty zarządcze. Sprawia, że nawet najbardziej złożone dane stają się intuicyjne w codziennej pracy.",
+    "image": "assets/team/tomasz-marek.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Klaudia Latuszek-Cierniak",
+    "role": "Chief Accounting Officer / Mistrzyni Rachunków",
+    "bio": "Główna księgowa i strażniczka porządku w liczbach. Łączy świat finansów z analityką danych, pilnując aby każdy raport zgadzał się co do złotówki.",
+    "image": "assets/team/klaudia-latuszek-cierniak.jpg",
+    "linkedin": ""
+  },
+  {
+    "name": "Justyna Lesiak",
+    "role": "Data Analyst / Reporting Storyteller",
+    "bio": "Przygotowuje analizy ad hoc i raporty zarządcze. Jej supermocą jest opowiadanie historii danymi w sposób zrozumiały dla całej organizacji.",
+    "image": "assets/team/justyna-lesiak.jpg",
+    "linkedin": ""
+  }
+]
