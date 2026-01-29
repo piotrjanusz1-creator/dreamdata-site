@@ -20,11 +20,30 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(900px 400px at 70% -10%, rgba(56,189,248,.22), transparent 60%),
-              radial-gradient(700px 360px at 10% 10%, rgba(34,211,238,.16), transparent 60%),
-              var(--bg);
+  background: var(--bg);        /* tylko kolor */
   color: var(--text);
   line-height:1.5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* gradienty jako osobna warstwa (mniej pasów przy zoomie) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(900px 400px at 70% -10%, rgba(56,189,248,.22), transparent 60%),
+    radial-gradient(700px 360px at 10% 10%, rgba(34,211,238,.16), transparent 60%);
+  transform: translateZ(0);     /* stabilizuje render */
+}
+
+/* cała treść nad tłem */
+body > *{
+  position: relative;
+  z-index: 1;
 }
 
 a{color:inherit}
@@ -37,11 +56,19 @@ code{background: rgba(255,255,255,.08); padding: .15rem .35rem; border-radius: 8
 .skip:focus{left:16px; top:16px; z-index:9999}
 
 .topbar{
-  position: sticky; top:0; z-index:50;
-  backdrop-filter: blur(10px);
-  background: rgba(7,20,37,.55);
+  position: sticky;
+  top:0;
+  z-index:50;
+
+  /* USUNIĘTY blur */
+  backdrop-filter: none;
+
+  /* trochę mocniejsze tło zamiast blur */
+  background: rgba(7,20,37,.82);
+
   border-bottom: 1px solid rgba(255,255,255,.10);
 }
+
 .topbar__inner{
   display:flex; align-items:center; justify-content:space-between;
   padding: 14px 0;
@@ -173,19 +200,22 @@ h1{
 .dot{ width:8px; height:8px; border-radius:999px; background: rgba(56,189,248,.9); margin-top:7px; flex: 0 0 auto; }
 .glow{
   position:absolute; inset:-80px -40px -60px -60px;
-  background: radial-gradient(500px 280px at 70% 30%, rgba(56,189,248,.30), transparent 55%),
-              radial-gradient(420px 260px at 30% 70%, rgba(34,211,238,.22), transparent 55%);
-  filter: blur(18px);
+  background: radial-gradient(700px 420px at 70% 30%, rgba(56,189,248,.28), transparent 60%),
+              radial-gradient(620px 420px at 30% 70%, rgba(34,211,238,.20), transparent 60%);
+  filter: none;
   pointer-events:none;
-  opacity:.65;
+  opacity:.55;
 }
 
 .section{ padding: 54px 0; }
 .section--alt{
-  background: rgba(255,255,255,.02);
-  border-top:1px solid rgba(255,255,255,.06);
-  border-bottom:1px solid rgba(255,255,255,.06);
+  position: relative;
+  z-index: 0;
+  background: transparent;
+  border-top: 0;
+  border-bottom: 0;
 }
+
 .section__head{ margin-bottom: 18px; }
 .section__head h2{
   margin:0 0 8px;
@@ -346,26 +376,29 @@ h1{
 
 /* avatar with image fallback */
 .team-avatar{
-  width: 96px;
-  height: 96px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: linear-gradient(135deg, #1e3a8a, #38bdf8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 28px;
-  letter-spacing: 1px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:800;
+  font-size: 24px;
+  letter-spacing:1px;
   margin: 0 auto 12px;
   box-shadow: 0 10px 26px rgba(0,0,0,0.25);
 }
+
 .team-avatar img{
   width:100%;
   height:100%;
   object-fit: cover;
   border-radius:50%;
+  transform: translateZ(0); /* lekkie wygładzenie */
 }
+
 .team-hint{
   margin-top: auto;
   padding-top: 10px;
@@ -467,4 +500,51 @@ input:focus, textarea:focus{ border-color: rgba(56,189,248,.45); box-shadow: 0 0
 }
 #news .section__head p {
   display: none;
+}
+/* --- Soft blur band: działa pewnie (bez konfliktu z tłem body) --- */
+body{
+  position: relative;
+}
+
+/* cała treść strony nad rozmyciem */
+body > *{
+  position: relative;
+  z-index: 1;
+}
+/* --- Fix: usuń poziome „pasy” od gradientów w kartach --- */
+.price,
+.card,
+.timeline__body,
+.news__item,
+.team-face{
+  background: rgba(255,255,255,.035) !important;
+  border-color: rgba(255,255,255,.09) !important;
+  box-shadow: 0 14px 36px rgba(0,0,0,.22) !important;
+}
+
+/* featured też bez „belki” */
+.price--featured{
+  background: rgba(255,255,255,.045) !important;
+  border-color: rgba(56,189,248,.30) !important;
+}
+
+/* górka w pricing (tekst w rzędzie) bez dodatkowego kontrastu */
+.price__top{
+  background: transparent !important;
+}
+.price,
+.card,
+.timeline__body{
+  overflow: hidden;
+}
+/* --- FIX: dithering (ziarno) usuwa banding/pasy na gradientach przy zoomie --- */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .07;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
 }
